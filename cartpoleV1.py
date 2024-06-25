@@ -17,7 +17,7 @@ def network(layerSizes, activation=nn.Tanh, output_activation=nn.Identity):
     # nn.Sequential takes any amount of arguments, and basically returns a simple neural network 
     return nn.Sequential(*layers)
 
-def train(env_name='CartPole-v1', hidden_sizes=50, learning_rate=1e-2, epochs=50, batch_size=5000):
+def train(env_name='CartPole-v1', hidden_sizes=50, learning_rate=1e-2, epochs=50, batch_size=2000):
     
     env = gym.make(env_name, render_mode = 'human')
     input_size = env.observation_space.shape[0]
