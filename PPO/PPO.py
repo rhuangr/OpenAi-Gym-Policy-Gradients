@@ -6,7 +6,7 @@ from numpy import mean, sum
 torch.random.manual_seed(2)
 
 class PPO():
-    def __init__(self, env_name, epochs = 50, batch_size = 500,
+    def __init__(self, env_name, epochs = 50, batch_size = 1500,
                  discount_rate = .97, updates_per_batch = 5):
         self.env = gym.make(env_name, render_mode = 'human')
         self.input_size = self.env.observation_space.shape[0]
@@ -113,9 +113,9 @@ class PPO():
                 discounted_rew = rew + self.discount_rate * discounted_rew
                 # original methods use insert(0, discounted_rew) which is 0(n)
                 rtgs.append(discounted_rew)  
-        #     print(len(rtgs) - current , end = " ")
-        #     current = len(rtgs)
-        # print()
+            print(len(rtgs),end = " ")
+        print()
+
         rtgs.reverse()
         return torch.as_tensor(rtgs, dtype=torch.float32)
     
